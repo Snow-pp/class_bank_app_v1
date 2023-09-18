@@ -15,8 +15,7 @@ public class AccountController {
 	// http://localhost:80/account/list
 	@GetMapping({"/list", "/"})
 	public String list() {
-//		return "account/list";
-		throw new CustomPageException("페이지가 없습니다.", HttpStatus.NOT_FOUND);
+		return "account/list";
 	}
 	
 	// 계좌 생성 페이지
