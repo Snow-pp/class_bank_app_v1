@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tencoding.bank.dto.SignInFormDto;
 import com.tencoding.bank.dto.SignUpFormDto;
 import com.tencoding.bank.handler.exception.CustomRestfulException;
 import com.tencoding.bank.repository.interfaces.UserRepository;
+import com.tencoding.bank.repository.model.User;
 
 @Service // IoC 대상 - 싱글톤 패턴
 public class UserService {
@@ -31,6 +33,16 @@ public class UserService {
 		if (result != 1) {
 			throw new CustomRestfulException("회원가입실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	// 로그인 서비스 처리
+	public User signIn(SignInFormDto signInFormDto) {
+		
+		User userEntity = userRepository.findByUsernameAndPassword(signInFormDto);
+		if (userEntity == null) {
+			throw new CustomRestfulException("아이디 혹은 비밀번호가 잘못되었습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return userEntity;
 	}
 	
 	

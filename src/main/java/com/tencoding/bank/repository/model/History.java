@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class History {
 	private Integer id;
-	private Long amouLong;
+	private Long amount;
 	private Long wBalance;
 	private Long dBalance;
 	private Integer wAccountId;

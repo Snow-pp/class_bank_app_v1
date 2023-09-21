@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tencoding.bank.repository.interfaces.AccountRepository"> 
+<mapper namespace="com.tencoding.bank.repository.interfaces.AccountRepository">
+
+	<select id="findByUserId" resultType="com.tencoding.bank.repository.model.Account">
+		select * from account_tb where user_id = #{userId}
+	</select>
 	
 	<insert id="insert">
 		insert into account_tb(number, password, balance, user_id, created_at)
-		values(#{number}, #{password}, #{balance}, #{user_id}, now())
+		values(#{number}, #{password}, #{balance}, #{userId}, now())
 	</insert>
 	
 	<update id="updateById">
 		update account_tb set number = #{number}, password = #{password},
-   			balance = #{balance}, user_id = #{user_id}
+   			balance = #{balance}, user_id = #{userId}
  		 where id = #{id}
 	</update>
 	
@@ -26,9 +30,7 @@
 		select * from account_tb
 	</select>
 	
-	<!-- findByUserId -->
-	
-	<select id="findByNumber">
+	<select id="findByNumber" resultType="com.tencoding.bank.repository.model.Account">
 		select * from account_tb where number = #{number}
 	</select>
 	
