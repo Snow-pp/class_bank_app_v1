@@ -12,7 +12,7 @@ public interface AccountRepository {
 	public int updateById(Account account);
 	public int deletdById(Integer id);
 	
-	public Account findById();
+	public Account findById(Integer id);
 	public List<Account> findAll();
 	
 	public List<Account> findByUserId(Integer principalId);
