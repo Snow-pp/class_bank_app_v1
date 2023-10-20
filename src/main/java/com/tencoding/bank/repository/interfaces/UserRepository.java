@@ -17,7 +17,7 @@ public interface UserRepository {
 	public int updateById(User user); // Id 기반으로 update한다.
 	public int deletdById(Integer id);
 	public User findById();
-	// 관리자 - 회원정보 리스트를 보고 싶다면?
 	public List<User> findAll();
 	public User findByUsernameAndPassword(SignInFormDto signInFormDto);
+	public User findByUsername(String username);
 }
